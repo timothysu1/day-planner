@@ -1,4 +1,6 @@
 var currentDay = $("#currentDay");
+var saveBtn = $(".saveBtn");
+var hour = $(".hour");
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
@@ -12,6 +14,22 @@ $(function () {
   // useful when saving the description in local storage?
   //
 
+  //When button is clicked
+  saveBtn.on("click", saveElement)
+  //Input for corresponding button is saved to local storage
+  function saveElement() {
+    var targetHour = $(this).parent();
+    var textarea = $(this).getElementbyClass("description")
+    console.log(targetHour.attr("id"));
+    var start = textarea.selectionStart;
+    var finish = textarea.selectionEndl;
+    var eventText = textarea.substring(start, finish);
+    console.log(eventText);
+    //localStorage.setItem(targetHour.attr("id"), eventText);
+
+  }
+
+
 
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
@@ -19,7 +37,7 @@ $(function () {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
   //
-
+var currentHour = dayjs().formta('H')
 
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
@@ -28,11 +46,11 @@ $(function () {
 
 
   // TODO: Add code to display the current date in the header of the page.
-function displayTime() {
-  var today = dayjs().format('dddd, MMMM DD, YYYY');
-  currentDay.text(today);
-}
-displayTime();
-//checks if the date is correct every minute
-setInterval(displayTime, 1000 * 60)
+  function displayTime() {
+    var today = dayjs().format('dddd, MMMM DD, YYYY');
+    currentDay.text(today);
+  }
+  displayTime();
+  //checks if the date is correct every minute
+  setInterval(displayTime, 1000 * 60)
 });
