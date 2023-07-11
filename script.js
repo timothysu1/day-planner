@@ -15,17 +15,13 @@ $(function () {
   //
 
   //When button is clicked
-  saveBtn.on("click", saveElement)
+  saveBtn.on("click", saveEvent)
   //Input for corresponding button is saved to local storage
-  function saveElement() {
+  function saveEvent() {
     var targetHour = $(this).parent();
-    var textarea = $(this).getElementbyClass("description")
+    var textArea = $(this).parent().find('.description').val();
     console.log(targetHour.attr("id"));
-    var start = textarea.selectionStart;
-    var finish = textarea.selectionEndl;
-    var eventText = textarea.substring(start, finish);
-    console.log(eventText);
-    //localStorage.setItem(targetHour.attr("id"), eventText);
+    localStorage.setItem(targetHour.attr("id"), textArea);
 
   }
 
@@ -37,14 +33,24 @@ $(function () {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
   //
-var currentHour = dayjs().formta('H')
+var currentHour = dayjs().format('H');
+console.log(currentHour);
 
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
 
-
+  function retrieveEvent () {
+    for (i = 9; i < 18;i++){
+      var hourKey= localStorage.getItem("hour-"+i);
+      console.log(hourKey);
+      var localEvent = $("#hour-"+i).find('.description');
+      localEvent = hourKey;
+    }
+    
+  }
+retrieveEvent();
   // TODO: Add code to display the current date in the header of the page.
   function displayTime() {
     var today = dayjs().format('dddd, MMMM DD, YYYY');
@@ -52,5 +58,5 @@ var currentHour = dayjs().formta('H')
   }
   displayTime();
   //checks if the date is correct every minute
-  setInterval(displayTime, 1000 * 60)
+  setInterval(displayTime, 1000 * 60);
 });
