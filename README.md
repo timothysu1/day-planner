@@ -6,9 +6,12 @@
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [Git](https://git-scm.com/)
+* [JQuery](https://jqueryui.com/about/)
+* [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+* [DayJS](https://day.js.org/)
 ## Deployed Link
 
-* [See Live Site]()
+* [See Live Site](https://timothysu1.github.io/day-planner/)
 
 ## Usage
 
@@ -20,7 +23,13 @@
 ## Important Code
 
 ```js
-
+ saveBtn.on("click", saveEvent)
+  function saveEvent() {
+    var targetHour = $(this).parent();
+    var textArea = $(this).parent().find('.description').val();
+    console.log(targetHour.attr("id"));
+    localStorage.setItem(targetHour.attr("id"), textArea);
+  }
 ```
 
 
