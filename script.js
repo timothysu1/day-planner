@@ -25,33 +25,47 @@ $(function () {
 
   }
 
-
-
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
   //
-var currentHour = dayjs().format('H');
-console.log(currentHour);
+
+  function hourColor() {
+    var currentHour = dayjs().format('H');
+    for (var i = 9; i < 18; i++) {
+      var hourEl = $('#hour-'+i)
+      if (currentHour == i) {
+        var presentTime = "row time-block present";
+        hourEl.removeClass().addClass(presentTime);
+      } else if (currentHour < i) {
+        var futureTime = "row time-block future";
+        hourEl.removeClass().addClass(futureTime);
+      }else if (currentHour > i) {
+        var pastTime = "row time-block past";
+        hourEl.removeClass().addClass(pastTime);
+      }
+    }
+  }
+  hourColor();
 
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
 
-  function retrieveEvent () {
-    for (var i = 9; i < 18;i++){
-      var hourKey= localStorage.getItem("hour-"+i);
-      console.log(hourKey);
-      $('#hour-'+i).find('.description').val(hourKey);
-      //localEvent = hourKey;
-      //console.log(localEvent)
+
+  //only need to iterate through 9am - 5pm
+  function retrieveEvent() {
+    for (var i = 9; i < 18; i++) {
+      var hourKey = localStorage.getItem("hour-" + i);
+      $('#hour-' + i).find('.description').val(hourKey);
     }
-    
   }
-retrieveEvent();
+  retrieveEvent();
+
+
   // TODO: Add code to display the current date in the header of the page.
   function displayTime() {
     var today = dayjs().format('dddd, MMMM DD, YYYY');
