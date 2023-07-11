@@ -42,11 +42,12 @@ console.log(currentHour);
   //
 
   function retrieveEvent () {
-    for (i = 9; i < 18;i++){
+    for (var i = 9; i < 18;i++){
       var hourKey= localStorage.getItem("hour-"+i);
       console.log(hourKey);
-      var localEvent = $("#hour-"+i).find('.description');
-      localEvent = hourKey;
+      $('#hour-'+i).find('.description').val(hourKey);
+      //localEvent = hourKey;
+      //console.log(localEvent)
     }
     
   }
