@@ -16,7 +16,7 @@ This webpage serves as a day scheduler that allows the user to log important eve
 * [See Live Site](https://timothysu1.github.io/day-planner/)
 
 ## Usage
-The user will be shown a page that displays the current date and time blocks that go from 9am to 5pm. The color of the block will reflect whether its the current block, a block that alreay happened, or a future block. The user will also be able to save the event they input by clicking on the save button to the right. Each save button will its corresponding block.
+The user will be shown a page that displays the current date and time blocks that go from 9am to 5pm. The color of the block will reflect whether its the current block, a block that alreay happened, or a future block. The user will also be able to save the event they input by clicking on the save button to the right. Each save button will save the input of its corresponding block.
 
 
 ## Learning Points 
@@ -31,7 +31,6 @@ The user will be shown a page that displays the current date and time blocks tha
   function saveEvent() {
     var targetHour = $(this).parent();
     var textArea = $(this).parent().find('.description').val();
-    console.log(targetHour.attr("id"));
     localStorage.setItem(targetHour.attr("id"), textArea);
   }
 ```
